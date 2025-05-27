@@ -109,6 +109,12 @@ public class VersenyzoSwingMegjelenito extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Nevezett versenyzők"));
 
+        cmbNevek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbNevekActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -177,7 +183,7 @@ public class VersenyzoSwingMegjelenito extends javax.swing.JFrame {
 
     private void mnuPrgBeFajlbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuPrgBeFajlbolActionPerformed
         try {
-            List<String> sorok = Files.readAllLines(Path.of("versenyzok.txt"));
+            List<String> sorok = Files.readAllLines(Path.of("versenyzok"));
 
             for (int i = 1; i < sorok.size(); i++) {
                 String sor = sorok.get(i);
@@ -195,6 +201,17 @@ public class VersenyzoSwingMegjelenito extends javax.swing.JFrame {
         Versenyzo versenyzo = new Versenyzo("RókaRudi", "rr@r.hu", Math.E, 21);
         megjelenites(versenyzo);
     }//GEN-LAST:event_mnuPrgFixActionPerformed
+
+    private void cmbNevekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNevekActionPerformed
+        //hányadik sorra katintunk a konbobokszban
+        int i = cmbNevek.getSelectedIndex();
+        //hányadik versenyzo
+        Versenyzo versenyzo = versenyzok.get(i);
+         //irjuk ki
+        megjelenites(versenyzo);
+        
+       
+    }//GEN-LAST:event_cmbNevekActionPerformed
 
     private void megjelenites(Versenyzo versenyzo) {
         txtVersenyzoNev.setText(versenyzo.getNev());
